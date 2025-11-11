@@ -1,29 +1,48 @@
-﻿using NebulaNet;
+﻿using Client.Console.Models;
+using Nebula.Graph;
+using NebulaNet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Client_Console.Services
+namespace Client.Console.Services
 {
     public class NebulaService : IDisposable
     {
         private bool _DisposedValue;
         private readonly NebulaConnection _Connection;
+        private AuthResponse _Auth;
 
-        public NebulaService(string ip, int port, string username, string pass)
-        {
-            
-            _Connection = ConnectClient(ip, port, username, pass).Result;
-        }
-        private static async Task<NebulaConnection> ConnectClient(string ip, int port, string username, string pass)
+        private static async Task<Tuple<NebulaConnection,AuthResponse>> ConnectClient(string ip, int port, string username, string pass)
         {
             NebulaConnection connection = new NebulaConnection();
             await connection.OpenAsync(ip, port);
-            await connection.AuthenticateAsync(username, pass);
-            return connection;
+            AuthResponse authResponse = await connection.AuthenticateAsync(username, pass);
+            return new Tuple<NebulaConnection, AuthResponse>(connection,authResponse);
         }
+        public NebulaService(string ip, int port, string username, string pass)
+        {
+            Tuple<NebulaConnection, AuthResponse> result = ConnectClient(ip, port, username, pass).Result;
+            _Connection = result.Item1;
+            _Auth = result.Item2;
+        }
+
+        public async Task<ExecutionResponse> CreateVertexAsync<T>(T model) where T : INebulaTag
+        {
+            return await _Connection.ExecuteAsync(_Auth.Session_id, model.Create());
+        }
+        public async Task<ExecutionResponse> CreateEdgeAsync<T>(T model) where T : INebulaEdge
+        {
+            return await _Connection.ExecuteAsync(_Auth.Session_id, model.Create());
+        }
+
+        public async Task<ExecutionResponse> ExecuteAsync(string nGQL)
+        {
+            return await _Connection.ExecuteAsync(_Auth.Session_id, nGQL);
+        }
+
         protected virtual void Dispose(bool disposing)
         {
             if (!_DisposedValue)
