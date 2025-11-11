@@ -2,6 +2,7 @@
 using Nebula.Graph;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -52,7 +53,7 @@ namespace Client.Console.Models
         }
         public string Create()
         {
-            return $"INSERT VERTEX {ModelName}({nameof(Address)},{nameof(Zip)},{nameof(City)},{nameof(Name)},Location) VALUES \"{Index:N}\":(\"{Address}\",{Zip},\"{City}\",\"{Name}\",ST_Point({Longitude},{Latitude}))";
+            return $"INSERT VERTEX {ModelName}({nameof(Address)},{nameof(Zip)},{nameof(City)},{nameof(Name)},Location) VALUES \"{Index:N}\":(\"{Address}\",{Zip},\"{City}\",\"{Name}\",ST_Point({Longitude.ToString(CultureInfo.InvariantCulture)},{Latitude.ToString(CultureInfo.InvariantCulture)}))";
         }
     }
 }

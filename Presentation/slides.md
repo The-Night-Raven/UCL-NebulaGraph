@@ -28,6 +28,15 @@ NebulaGraph
 - data gemmes som knuder (*det hedder [det!](https://da.wikipedia.org/wiki/Knude_(graf))*)
 - og bindes sammen med kanter
 
+https://docs.nebula-graph.io/3.6.0/1.introduction/1.what-is-nebula-graph/
+
+--
+
+![SoMe](general.svg)
+
+--
+
+![stamtræ](stamtræ.svg)
 
 ---
 
@@ -57,6 +66,16 @@ Demonstrér hvordan Create, Read, Update og Delete-operationer (CRUD) udføres i
 ## Fordele og ulemper
 
 Analysér databasens styrker og svagheder. Identificér hvilke typer applikationer databasen er velegnet til, samt i hvilke sammenhænge den er mindre hensigtsmæssig.
+
+--
+
+## Parlør
+
+SPACE ~= DATABASE
+
+TAG ~= TABLE
+
+EDGE ~= TABLE
 
 ---
 

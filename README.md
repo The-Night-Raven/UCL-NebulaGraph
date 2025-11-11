@@ -33,3 +33,22 @@ Log på Studio med:
 |-------------------|------|----------|----------|
 | graphd            | 9669 | root     | root     |
 
+---
+
+## Løst og fast
+
+```sh
+CREATE SPACE helloworld (VID_TYPE=FIXED_STRING(1));
+# Host not enough!
+# Ikke nok storage hosts (default replica_factor er 1, så vi har nul kørende)
+# Tilføj med (https://docs.nebula-graph.io/3.8.0/4.deployment-and-installation/manage-storage-host/)
+
+ADD HOSTS "storaged0":9779;
+
+# Gentag CREATE
+
+SHOW SPACES;
+DESCRIBE SPACE helloworld;
+```
+
+---

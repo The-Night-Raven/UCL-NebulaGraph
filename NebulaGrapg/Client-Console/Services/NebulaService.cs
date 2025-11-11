@@ -31,16 +31,21 @@ namespace Client.Console.Services
 
         public async Task<ExecutionResponse> CreateVertexAsync<T>(T model) where T : INebulaTag
         {
-            return await _Connection.ExecuteAsync(_Auth.Session_id, model.Create());
+            var query = model.Create();
+            var resp = await _Connection.ExecuteAsync(_Auth.Session_id, query);
+            return resp;
         }
         public async Task<ExecutionResponse> CreateEdgeAsync<T>(T model) where T : INebulaEdge
         {
-            return await _Connection.ExecuteAsync(_Auth.Session_id, model.Create());
+            var query = model.Create();
+            var resp = await _Connection.ExecuteAsync(_Auth.Session_id, query);
+            return resp;
         }
 
         public async Task<ExecutionResponse> ExecuteAsync(string nGQL)
         {
-            return await _Connection.ExecuteAsync(_Auth.Session_id, nGQL);
+            var resp = await _Connection.ExecuteAsync(_Auth.Session_id, nGQL);
+            return resp;
         }
 
         protected virtual void Dispose(bool disposing)
