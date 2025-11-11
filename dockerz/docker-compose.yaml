@@ -124,7 +124,7 @@ services:
   #     - nebula-net
 
   web:
-    image: vesoft/nebula-graph-studio:v3.10.0
+    image: docker.io/vesoft/nebula-graph-studio:v3.10.0
     environment:
       USER: root
     ports:

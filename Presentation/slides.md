@@ -1,14 +1,56 @@
 ---
-theme: "night"
-transition: "slide"
-highlightTheme: "monokai"
-slideNumber: false
 title: "NebulaGraph"
+enableMenu: false
+enableChalkboard: false
+---
+
+Philip og Peter Præsenterer
+
+NebulaGraph
+
+*(et Neo4j rip-off?)*
+
+
+---
+
+## Hvad er NebulaGraph?
+
+- En graf database
+- Ekstremt fokus på hastighed
+- Stort fokus på skalerbarhed
+- Indbygget sharding
+- Bruger nGQL til forespørgsler
+
+--
+
+## Hvad er en graf
+
+- data gemmes som knuder (*det hedder [det!](https://da.wikipedia.org/wiki/Knude_(graf))*)
+- og bindes sammen med kanter
+
+
 ---
 
 ## Demo af opsætning
 
 Præsentér opsætningsprocessen for databasen, herunder installation, konfiguration og integration i et simpelt projekt.
+
+Præsentér, hvordan databasen kan opsættes. Dette kan indebære installation, konfiguration, og kort om, hvordan databasen integreres i et simpelt projekt.
+
+---
+
+# En demonstration af CRUD-operationer
+
+--
+
+## CRUD-funktionalitet
+
+Demonstrer, hvordan man kan oprette, læse, opdatere og slette data (CRUD-operationer) i databasen. Vis konkrete eksempler på, hvordan dette udføres i den valgte database.
+
+--
+
+## CRUD-funktionalitet
+Demonstrér hvordan Create, Read, Update og Delete-operationer (CRUD) udføres i databasen. Præsentér konkrete eksempler på implementering af disse operationer.
 
 ---
 
@@ -32,76 +74,5 @@ Undersøg andre relevante emner for databasetypen, eksempelvis:
 - Håndtering af store datamængder
 - Sikkerhed
 - Data-redundans
-
----
-
-3. Git-repository
-
-Git-repositoryet skal indeholde:
-
-- Dokumentation
-- Information om hvordan man kommer i gang med databasen
-- Materiale der understøtter præsentationens demo
-
-Alle repositories vil blive delt på ItsLearning til fælles brug for holdet.
-
----
-
-Præsentationen skal omfatte:
-
----
-
-# En introduktion til databasen og dens anvendelsesområde
-
----
-
-# En demonstration af databasens opsætning
-
---
-
-## Demo af opsætning
-Præsentér, hvordan databasen kan opsættes. Dette kan indebære installation, konfiguration, og kort om, hvordan databasen integreres i et simpelt projekt.
-
----
-
-# En demonstration af CRUD-operationer
-
---
-
-## CRUD-funktionalitet
-
-Demonstrer, hvordan man kan oprette, læse, opdatere og slette data (CRUD-operationer) i databasen. Vis konkrete eksempler på, hvordan dette udføres i den valgte database.
-
---
-
-## CRUD-funktionalitet
-Demonstrér hvordan Create, Read, Update og Delete-operationer (CRUD) udføres i databasen. Præsentér konkrete eksempler på implementering af disse operationer.
-
----
-
-En analyse af databasens fordele og ulemper
-
---
-
-## Fordele og ulemper
-Lav en analyse af databasens styrker og svagheder. Hvad gør databasen velegnet til visse typer af applikationer og mindre velegnet til andre?
-
----
-
-En refleksion over hvornår databasen udgør det rette valg
-
---
-
-## Refleksion
-Tilføj en kort refleksion over, hvornår og hvordan denne database kunne være det rette valg i et praktisk projekt, og i hvilke situationer det ville være hensigtsmæssigt at vælge en anden type database.
-
----
-
-En diskussion af yderligere relevante emner for databasen
-
---
-
-## Yderligere emner
-Dyk ned i andre emner, som er generelt vigtige for databaser af denne type. Dette kan omfatte skalerbarhed, performance, håndtering af store datamængder, sikkerhed eller data-redundans.
 
 ---
