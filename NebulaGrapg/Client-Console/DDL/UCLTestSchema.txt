@@ -13,7 +13,7 @@ CREATE TAG `Teachers` ( `Name` string NULL) ttl_duration = 0, ttl_col = "";
 
 # Create Edge: 
 CREATE EDGE `Consists_Of` () ttl_duration = 0, ttl_col = "";
-CREATE EDGE `Enrolled` ( `Grade` int8 NULL) ttl_duration = 0, ttl_col = "";
+CREATE EDGE `Enrolled` ( `Grade` int16 NULL) ttl_duration = 0, ttl_col = "";
 CREATE EDGE `Has` () ttl_duration = 0, ttl_col = "";
 CREATE EDGE `Offers` () ttl_duration = 0, ttl_col = "";
 CREATE EDGE `Teaches` () ttl_duration = 0, ttl_col = "";

@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Client.Console.Models;
 
-namespace Client.Console.Models
+namespace Client.Console.Models.Edges
 {
     public class SchoolHasLocation : INebulaEdge
     {
@@ -21,7 +22,7 @@ namespace Client.Console.Models
 
         public string Create()
         {
-            return $"INSERT EDGE {EdgeName} () VALUES \"{From.Index:N}\"->\"{To.Index:N}\":();";
+            return $"INSERT EDGE {EdgeName} () VALUES \"{From.VID:N}\"->\"{To.VID:N}\":();";
         }
     }
 }

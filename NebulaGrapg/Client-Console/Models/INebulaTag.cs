@@ -9,7 +9,8 @@ namespace Client.Console.Models
     public interface INebulaTag
     {
         string ModelName { get; }
-        Guid Index { get; }
+        // All tags must have a unique VID (Primary key)
+        Guid VID { get; }
         string Create();
 
     }
