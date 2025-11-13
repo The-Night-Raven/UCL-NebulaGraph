@@ -38,17 +38,107 @@ https://docs.nebula-graph.io/3.6.0/1.introduction/1.what-is-nebula-graph/
 
 ![stamtræ](stamtræ.svg)
 
+--
+
+De vigtigste termer i NebulaGraph
+
+| Term   | Betydning                                                     |
+|--------|---------------------------------------------------------------|
+| Space  | Selve databasen                                               |
+| Edge   | En relation(stype) mellem knuder(vertices)                    |
+| Tag    | Beskriver en rolle/type knuder kan have. Evt. med attributter |
+| Vertex | En manifestering af en knude med en eller flere roller (tags) |
+
 ---
 
 ## Demo af opsætning
 
-Præsentér opsætningsprocessen for databasen, herunder installation, konfiguration og integration i et simpelt projekt.
+Beskriv det vigtigste i docker compose filen
 
-Præsentér, hvordan databasen kan opsættes. Dette kan indebære installation, konfiguration, og kort om, hvordan databasen integreres i et simpelt projekt.
+Beskriv kort arkitekturen
+
+https://docs.nebula-graph.io/3.6.0/1.introduction/3.nebula-graph-architecture/1.architecture-overview/
+
+og de tre services
 
 ---
 
-# En demonstration af CRUD-operationer
+# Demo 1 af 2
+
+--
+
+For at oprette en database
+
+    CREATE SPACE helloworld (VID_TYPE=FIXED_STRING(32));
+
+Vi kan se den med
+
+    SHOW SPACES;
+    DESCRIBE SPACE helloworld;
+
+--
+
+Et schema består af TAGs og EDGEs
+
+Hvis vi vil repræsentere et "vej"-net skal vi bruge byer og veje:
+
+    CREATE TAG city (name string, population int, founded int);
+
+    SHOW TAGS;
+
+    CREATE EDGE road (speed_limit int);
+    CREATE EDGE railroad ();
+
+    SHOW EDGES;
+
+--
+
+Vi indsætter data i databasen:
+
+    INSERT VERTEX city(name, population, founded) VALUES
+    "Aalborg":("Aalborg", 120000, 1035),
+    "Bjerringbro":("Bjerringbro", 7500, 1863),
+    "Christiansfeld":("Christiansfeld", 3000, 1773),
+    "Dybbøl":("Dybbøl", 2500, 1352);
+
+    MATCH (all_vertices) RETURN all_vertices;
+
+    INSERT EDGE road(speed_limit) VALUES
+    "Aalborg"->"Bjerringbro":(80),
+    "Bjerringbro"->"Aalborg":(80),
+    "Aalborg"->"Christiansfeld":(130),
+    "Christiansfeld"->"Aalborg":(130),
+    "Aalborg"->"Dybbøl":(50),
+    "Dybbøl"->"Aalborg":(50),
+    "Christiansfeld"->"Dybbøl":(50),
+    "Dybbøl"->"Christiansfeld":(50);
+
+    INSERT EDGE railroad() VALUES
+    "Bjerringbro"->"Dybbøl":(),
+    "Dybbøl"->"Bjerringbro":();
+
+    MATCH ()<-[all_edges]-() RETURN all_edges;
+
+--
+
+![roads](roads.png)
+
+--
+
+Find alle veje fra B til C
+
+    FIND NOLOOP PATH
+    FROM "Bjerringbro" TO "Christiansfeld"
+    OVER road YIELD PATH AS `Korteste vej`;
+
+Den langsommeste vej
+
+    FIND NOLOOP PATH WITH PROP
+    FROM "Bjerringbro" TO "Christiansfeld"
+    OVER road YIELD PATH AS p
+    | YIELD [v IN nodes($-.p) | v.city.name] AS `Langsomste vej`, reduce(speed_limits = 0, r IN relationships($-.p)
+    | speed_limits + r.speed_limit) AS speed
+    | ORDER BY $-.speed ASC | LIMIT 1;
 
 --
 

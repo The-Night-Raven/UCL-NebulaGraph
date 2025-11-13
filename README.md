@@ -51,4 +51,10 @@ SHOW SPACES;
 DESCRIBE SPACE helloworld;
 ```
 
+```sh
+MATCH (all_vertices) RETURN all_vertices; # Alle knuder
+MATCH ()<-[all_edges]-() RETURN all_edges; # Alle kanter
+
+```
+
 ---
