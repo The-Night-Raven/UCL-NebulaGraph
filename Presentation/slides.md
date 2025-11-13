@@ -10,7 +10,6 @@ NebulaGraph
 
 *(et Neo4j rip-off?)*
 
-
 ---
 
 ## Hvad er NebulaGraph?
@@ -51,15 +50,20 @@ De vigtigste termer i NebulaGraph
 
 ---
 
-## Demo af opsætning
+## Opsætning
 
-Beskriv det vigtigste i docker compose filen
+--
 
-Beskriv kort arkitekturen
+NebulGraph har brug for tre services:
+- metad indeholder skemaet og håndterer jobs
+- graphd servicen er reelt query motoren
+- storaged indeholder selve dataen
+
+Se docker-compose.yaml
 
 https://docs.nebula-graph.io/3.6.0/1.introduction/3.nebula-graph-architecture/1.architecture-overview/
 
-og de tre services
+    ADD HOSTS "storaged0":9779;
 
 ---
 
@@ -140,48 +144,37 @@ Den langsommeste vej
     | speed_limits + r.speed_limit) AS speed
     | ORDER BY $-.speed ASC | LIMIT 1;
 
---
+---
 
-## CRUD-funktionalitet
-
-Demonstrer, hvordan man kan oprette, læse, opdatere og slette data (CRUD-operationer) i databasen. Vis konkrete eksempler på, hvordan dette udføres i den valgte database.
+# Demo 2 af 2
 
 --
 
-## CRUD-funktionalitet
-Demonstrér hvordan Create, Read, Update og Delete-operationer (CRUD) udføres i databasen. Præsentér konkrete eksempler på implementering af disse operationer.
+Dotnet projekt
 
 ---
 
 ## Fordele og ulemper
 
-Analysér databasens styrker og svagheder. Identificér hvilke typer applikationer databasen er velegnet til, samt i hvilke sammenhænge den er mindre hensigtsmæssig.
+Fordele
+- Horisontalt skalerbarhed indbygget
+- Ekstremt hurtige udlæsninger
+- Kan håndtere store datamængder
+- Data er redundant via replicas indbygget i et SPACE
+- Høj tilgængelighed
 
---
-
-## Parlør
-
-SPACE ~= DATABASE
-
-TAG ~= TABLE
-
-EDGE ~= TABLE
+Ulemper
+- ikke autoincrementing id'er
+- klienter ikke lige så refinede som EF Core = meget manuelt arbejde
 
 ---
 
 ## Refleksion
 
-Reflektér over hvornår og hvordan denne database udgør det optimale valg i et praktisk projekt, samt identificér situationer hvor alternative databasetyper ville være mere hensigtsmæssige.
+Vælg den når:
+- Du har store datasæt der skal queries i realtid
 
----
-
-## Yderligere emner
-
-Undersøg andre relevante emner for databasetypen, eksempelvis:
-- Skalerbarhed
-- Performance
-- Håndtering af store datamængder
-- Sikkerhed
-- Data-redundans
+- Har brug for at analysere forretningsdata fra andre kilder.
+- Har indbygget support for forskellige integrationer.
 
 ---
